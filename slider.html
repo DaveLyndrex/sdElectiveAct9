@@ -1,0 +1,346 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliders</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <style>
+        h1,
+        h4 {
+            text-align: center;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            /* Override default CSS styles */
+            appearance: none;
+            /* width: 100%; Full-width */
+            height: 25px;
+            /* Specified height */
+            background: #d3d3d3;
+            /* Grey background */
+            outline: none;
+            /* Remove outline */
+            opacity: 0.7;
+            /* Set transparency (for mouse-over effects on hover) */
+            -webkit-transition: .2s;
+            /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+        /* Mouse-over effects */
+        
+        .slider:hover {
+            opacity: 1;
+            /* Fully shown on mouse-over */
+        }
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            /* Override default look */
+            appearance: none;
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #4CAF50;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 25px;
+            /* Set a specific slider handle width */
+            height: 25px;
+            /* Slider handle height */
+            background: #4CAF50;
+            /* Green background */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Adafruit CLUE Sliders</h1>
+    <h4 id="status-header">Connecting...</h4>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p>X-Acceleration: <span id="x-acceleration"></span></p>
+                <input type="range" min="-1023" max="1023" value="0" class="slider" id="x-accel">
+            </div>
+            <div class="col-md-4">
+                <p>Y-Acceleration: <span id="y-acceleration"></span></p>
+                <input type="range" min="-1023" max="1023" value="0" class="slider" id="y-accel">
+            </div>
+            <div class="col-md-4">
+                <p>Z-Acceleration: <span id="z-acceleration"></span></p>
+                <input type="range" min="-1023" max="1023" value="0" class="slider" id="z-accel">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <p>X-Gyroscope: <span id="x-gyroscope"></span></p>
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="x-gyro">
+            </div>
+            <div class="col-md-4">
+                <p>Y-Gyroscope: <span id="y-gyroscope"></span></p>
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="y-gyro">
+            </div>
+            <div class="col-md-4">
+                <p>Z-Gyroscope: <span id="z-gyroscope"></span></p>
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="z-gyro">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <p>X-Magnetic: <span id="x-magnetic"></span></p>
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="x-mag">
+            </div>
+            <div class="col-md-4">
+                <p>Y-Magnetic: <span id="y-magnetic"></span></p>
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="y-mag">
+            </div>
+            <div class="col-md-4">
+                <p>Z-Magnetic: <span id="z-magnetic"></span></p>
+                <input type="range" min="-1000" max="1000" value="0" class="slider" id="z-mag">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Pressure: <span id="pressure"></span></p>
+                <input type="range" min="800" max="1100" value="0" class="slider" id="pres">
+            </div>
+            <div class="col-md-3">
+                <p>Temperature: <span id="temperature"></span></p>
+                <input type="range" min="-55" max="125" value="0" class="slider" id="temp">
+            </div>
+            <div class="col-md-3">
+                <p>Humidity: <span id="humidity"></span></p>
+                <input type="range" min="0" max="100" value="0" class="slider" id="humi">
+            </div>
+            <div class="col-md-3">
+                <p>Proximity: <span id="proximity"></span></p>
+                <input type="range" min="0" max="255" value="0" class="slider" id="prox">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-3">
+                <p>R-Color:<span id="r-color"></span></p>
+                <input type="range" min="0" max="65535" value="0" class="slider" id="r-c">
+            </div>
+            <div class="col-md-3">
+                <p>G-Color:<span id="g-color"></span></p>
+                <input type="range" min="0" max="65535" value="0" class="slider" id="g-c">
+            </div>
+            <div class="col-md-3">
+                <p>B-Color:<span id="b-color"></span></p>
+                <input type="range" min="0" max="65535" value="0" class="slider" id="b-c">
+            </div>
+            <div class="col-md-3">
+                <p>Light Intensity:<span id="lgt-intensity"></span></p>
+                <input type="range" min="0" max="65535" value="0" class="slider" id="lgt">
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="./browserMqtt.js "></script>
+    <script>
+        var broker = 'wss://mqtt.eclipseprojects.io:443/mqtt';
+        var client = mqtt.connect(broker);
+
+        var status_header = document.getElementById('status-header')
+
+        client.on('connect', function() {
+            status_header.innerHTML = 'Connected to ' + broker;
+            console.log('Connected to ' + broker)
+        })
+
+        var xAccSlider = document.getElementById("x-accel");
+        var xAccOutput = document.getElementById("x-acceleration");
+        xAccOutput.innerHTML = xAccSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        xAccSlider.oninput = function() {
+            xAccOutput.innerHTML = this.value;
+        }
+        var yAccSlider = document.getElementById("y-accel");
+        var yAccOutput = document.getElementById("y-acceleration");
+        yAccOutput.innerHTML = yAccSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        yAccSlider.oninput = function() {
+            yAccOutput.innerHTML = this.value;
+        }
+        var zAccSlider = document.getElementById("z-accel");
+        var zAccOutput = document.getElementById("z-acceleration");
+        zAccOutput.innerHTML = zAccSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        zAccSlider.oninput = function() {
+            zAccOutput.innerHTML = this.value;
+        }
+        var xGyroSlider = document.getElementById("x-gyro");
+        var xGyroOutput = document.getElementById("x-gyroscope");
+        xGyroOutput.innerHTML = xGyroSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        xGyroSlider.oninput = function() {
+            xGyroOutput.innerHTML = this.value;
+        }
+        var yGyroSlider = document.getElementById("y-gyro");
+        var yGyroOutput = document.getElementById("y-gyroscope");
+        yGyroOutput.innerHTML = yGyroSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        yGyroSlider.oninput = function() {
+            yGyroOutput.innerHTML = this.value;
+        }
+        var zGyroSlider = document.getElementById("z-gyro");
+        var zGyroOutput = document.getElementById("z-gyroscope");
+        zGyroOutput.innerHTML = zGyroSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        zGyroSlider.oninput = function() {
+            zGyroOutput.innerHTML = this.value;
+        }
+        var xMagSlider = document.getElementById("x-mag");
+        var xMagOutput = document.getElementById("x-magnetic");
+        xMagOutput.innerHTML = xMagSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        xMagSlider.oninput = function() {
+            xMagOutput.innerHTML = this.value;
+        }
+        var yMagSlider = document.getElementById("y-mag");
+        var yMagOutput = document.getElementById("y-magnetic");
+        yMagOutput.innerHTML = yMagSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        yMagSlider.oninput = function() {
+            yMagOutput.innerHTML = this.value;
+        }
+        var zMagSlider = document.getElementById("z-mag");
+        var zMagOutput = document.getElementById("z-magnetic");
+        zMagOutput.innerHTML = zMagSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        zMagSlider.oninput = function() {
+            zMagOutput.innerHTML = this.value;
+        }
+        var presSlider = document.getElementById("pres");
+        var presOutput = document.getElementById("pressure");
+        presOutput.innerHTML = presSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        presSlider.oninput = function() {
+            presOutput.innerHTML = this.value;
+        }
+        var tempSlider = document.getElementById("temp");
+        var tempOutput = document.getElementById("temperature");
+        tempOutput.innerHTML = tempSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        tempSlider.oninput = function() {
+            tempOutput.innerHTML = this.value;
+        }
+        var humiSlider = document.getElementById("humi");
+        var humiOutput = document.getElementById("humidity");
+        humiOutput.innerHTML = humiSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        humiSlider.oninput = function() {
+            humiOutput.innerHTML = this.value;
+        }
+        var proxSlider = document.getElementById("prox");
+        var proxOutput = document.getElementById("proximity");
+        proxOutput.innerHTML = proxSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        proxSlider.oninput = function() {
+            proxOutput.innerHTML = this.value;
+        }
+        var rcSlider = document.getElementById("r-c");
+        var rcOutput = document.getElementById("r-color");
+        rcOutput.innerHTML = rcSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        rcSlider.oninput = function() {
+            rcOutput.innerHTML = this.value;
+        }
+        var gcSlider = document.getElementById("g-c");
+        var gcOutput = document.getElementById("g-color");
+        gcOutput.innerHTML = gcSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        gcSlider.oninput = function() {
+            gcOutput.innerHTML = this.value;
+        }
+        var bcSlider = document.getElementById("b-c");
+        var bcOutput = document.getElementById("b-color");
+        bcOutput.innerHTML = bcSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        bcSlider.oninput = function() {
+            bcOutput.innerHTML = this.value;
+        }
+        var lightSlider = document.getElementById("lgt");
+        var lightOutput = document.getElementById("lgt-intensity");
+        lightOutput.innerHTML = lightSlider.value; // Display the default slider value
+        // Update the current slider value (each time you drag the slider handle)
+        lightSlider.oninput = function() {
+            lightOutput.innerHTML = this.value;
+        }
+
+        tempSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/', this.value)
+        }
+        //for accelerometer
+        xAccSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/x-accel', this.value)
+        }
+        yAccSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/y-accel', this.value)
+        }
+        zAccSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/z-accel', this.value)
+        }
+        //for gyroscope
+        xGyroSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/x-gyro', this.value)
+        }
+        yGyroSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/y-gyro', this.value)
+        }
+        zGyroSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/z-gyro', this.value)
+        }
+        //for magnetometer
+        xMagSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/x-mag', this.value)
+        }
+        yMagSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/y-mag', this.value)
+        }
+        zMagSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/z-mag', this.value)
+        }
+        
+     
+    </script>
+</body>
+
+</html>
