@@ -10,16 +10,18 @@ from adafruit_clue import clue
 import paho.mqtt.client as mqtt
 
 def display_text(slider):
-    clue_data[0].text = "Accel: {} {} {} m/s^2".format(*(slider["dave/x-accel"],slider["dave/y-accel"],slider["dave/z-accel"]))
-    clue_data[1].text = "Gyro: {} {} {} dps".format(*(slider["dave/x-gyro"],slider["dave/y-gyro"],slider["dave/z-gyro"]))
-    clue_data[2].text = "Magnetic: {} {} {} uTesla".format(*(slider["dave/x-mag"],slider["dave/y-mag"],slider["dave/z-mag"]))
-    # clue_data[3].text = "Pressure: {} hPa".format(clue.pressure)
+    clue_data[0].text = "Accel: {} {} {} m/s^2".format(*(slider["dave/x-accel"],slider["dave/y-accel"],slider["dave/z-accel"]))#display the publish data(x,y,z accelerometer) in index 0.
+    clue_data[1].text = "Gyro: {} {} {} dps".format(*(slider["dave/x-gyro"],slider["dave/y-gyro"],slider["dave/z-gyro"]))#display the publish data(x,y,z gyroscope) in index 1.
+    clue_data[2].text = "Magnetic: {} {} {} uTesla".format(*(slider["dave/x-mag"],slider["dave/y-mag"],slider["dave/z-mag"]))#display the publish data(x,y,z magnetic) in index 2.
+    clue_data[3].text = "Pressure: {} hPa".format(slider["dave/pres"])#display the publish data(pressure) in index 3.
     # clue_data[4].text = "Altitude: {:.0f} m".format(clue.altitude)
-    # clue_data[5].text = "Temperature: {} C".format(temp)
-    # clue_data[6].text = "Humidity: {} %".format(clue.humidity)
-    # clue_data[7].text = "Proximity: {}".format(clue.proximity)
-    # clue_data[8].text = "Color: R: {} G: {} B: {} C: {}".format(*clue.color)
-    clue_data.show()
+    clue_data[5].text = "Temperature: {} C".format(slider["dave/temp"])#display the publish data(temperature) in index 4.
+    clue_data[6].text = "Humidity: {} %".format(slider["dave/humi"])#display the publish data(humidity) in index 5.
+    clue_data[7].text = "Proximity: {}".format(slider["dave/prox"])#display the publish data(proximity) in index 6.
+    clue_data[8].text = "Color: R: {} G: {} B: {} C: {}".format(*slider["dave/r-c"],slider["dave/g-c"],slider["dave/b-c"],slider["dave/lgt"])#display the publish data(colors) in index 7.
+    clue_data.show()#show all data.
+
+#json that initialize all to 0.
 dave = {"dave/x-accel":0,
         "dave/y-accel":0,
         "dave/z-accel":0,
@@ -28,7 +30,15 @@ dave = {"dave/x-accel":0,
         "dave/z-gyro":0,
         "dave/x-mag":0,
         "dave/y-mag":0,
-        "dave/z-mag":0
+        "dave/z-mag":0,
+        "dave/pres":0,
+        "dave/temp":0,
+        "dave/humi":0,
+        "dave/prox":0,
+        "dave/r-c":0,
+        "dave/g-c":0,
+        "dave/b-c":0,
+        "dave/lgt":0
         }
 
 def on_connect(client, userdata, flags, rc):
@@ -51,6 +61,6 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("mqtt.eclipseprojects.io", 1883, 60)
+client.connect("mqtt.eclipseprojects.io", 1883, 60)#connect to broker.
 
-client.loop_forever()
+client.loop_forever()#continuous loop.

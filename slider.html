@@ -165,7 +165,7 @@
 
     <script src="./browserMqtt.js "></script>
     <script>
-        var broker = 'wss://mqtt.eclipseprojects.io:443/mqtt';
+        var broker = 'wss://mqtt.eclipseprojects.io:443/mqtt'; //broker
         var client = mqtt.connect(broker);
 
         var status_header = document.getElementById('status-header')
@@ -175,45 +175,45 @@
             console.log('Connected to ' + broker)
         })
 
-        var xAccSlider = document.getElementById("x-accel");
-        var xAccOutput = document.getElementById("x-acceleration");
-        xAccOutput.innerHTML = xAccSlider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
+        var xAccSlider = document.getElementById("x-accel"); //initalize variable xAccSlider and store the value of id x-accel.
+        var xAccOutput = document.getElementById("x-acceleration"); //initialize variable xAccOutput and store the value of id x-acceleration.
+        xAccOutput.innerHTML = xAccSlider.value; // Display the default slider value.
+        // Update the current slider value (each time you drag the slider handle).
         xAccSlider.oninput = function() {
             xAccOutput.innerHTML = this.value;
         }
-        var yAccSlider = document.getElementById("y-accel");
-        var yAccOutput = document.getElementById("y-acceleration");
-        yAccOutput.innerHTML = yAccSlider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
+        var yAccSlider = document.getElementById("y-accel"); //initialize variable yAccSlider and store the value of id y-accel.
+        var yAccOutput = document.getElementById("y-acceleration"); //initialize variable yAccOutput and store the value of id y-acceleration.
+        yAccOutput.innerHTML = yAccSlider.value; // Display the default slider value.
+        // Update the current slider value (each time you drag the slider handle).  
         yAccSlider.oninput = function() {
             yAccOutput.innerHTML = this.value;
         }
-        var zAccSlider = document.getElementById("z-accel");
-        var zAccOutput = document.getElementById("z-acceleration");
-        zAccOutput.innerHTML = zAccSlider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
+        var zAccSlider = document.getElementById("z-accel"); //initialize variable zAccSlider and store the value of id z-accel.
+        var zAccOutput = document.getElementById("z-acceleration"); //initialize variable zAccOutput and store the value of id z-acceleration.
+        zAccOutput.innerHTML = zAccSlider.value; // Display the default slider value.
+        // Update the current slider value (each time you drag the slider handle).
         zAccSlider.oninput = function() {
             zAccOutput.innerHTML = this.value;
         }
-        var xGyroSlider = document.getElementById("x-gyro");
-        var xGyroOutput = document.getElementById("x-gyroscope");
-        xGyroOutput.innerHTML = xGyroSlider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
+        var xGyroSlider = document.getElementById("x-gyro"); //initialize variable x-gyro and store the value of id x-gyro.
+        var xGyroOutput = document.getElementById("x-gyroscope"); //initialize variable xGyroOutput and store the value of id x-gyroscope.
+        xGyroOutput.innerHTML = xGyroSlider.value; // Display the default slider value.
+        // Update the current slider value (each time you drag the slider handle).
         xGyroSlider.oninput = function() {
             xGyroOutput.innerHTML = this.value;
         }
-        var yGyroSlider = document.getElementById("y-gyro");
-        var yGyroOutput = document.getElementById("y-gyroscope");
-        yGyroOutput.innerHTML = yGyroSlider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
+        var yGyroSlider = document.getElementById("y-gyro"); //initialize variable y-gyro and store the value of id y-gyro.
+        var yGyroOutput = document.getElementById("y-gyroscope"); //initialize variable yGyroOutput and store the value of id y-gyroscope.
+        yGyroOutput.innerHTML = yGyroSlider.value; // Display the default slider value.
+        // Update the current slider value (each time you drag the slider handle).
         yGyroSlider.oninput = function() {
             yGyroOutput.innerHTML = this.value;
         }
-        var zGyroSlider = document.getElementById("z-gyro");
-        var zGyroOutput = document.getElementById("z-gyroscope");
-        zGyroOutput.innerHTML = zGyroSlider.value; // Display the default slider value
-        // Update the current slider value (each time you drag the slider handle)
+        var zGyroSlider = document.getElementById("z-gyro"); //initialize variable z-gyro and store the value of id z-gyro.
+        var zGyroOutput = document.getElementById("z-gyroscope"); //initialize variable zGyroOutput and store the value of id z-gyroscope.
+        zGyroOutput.innerHTML = zGyroSlider.value; // Display the default slider value.
+        // Update the current slider value (each time you drag the slider handle).
         zGyroSlider.oninput = function() {
             zGyroOutput.innerHTML = this.value;
         }
@@ -295,11 +295,8 @@
             lightOutput.innerHTML = this.value;
         }
 
-        tempSlider.onmouseup = function() {
-            console.log(this.value)
-            client.publish('dave/', this.value)
-        }
-        //for accelerometer
+
+        //for  X accelerometer
         xAccSlider.onmouseup = function() {
             console.log(this.value)
             client.publish('dave/x-accel', this.value)
@@ -309,10 +306,10 @@
             client.publish('dave/y-accel', this.value)
         }
         zAccSlider.onmouseup = function() {
-            console.log(this.value)
-            client.publish('dave/z-accel', this.value)
-        }
-        //for gyroscope
+                console.log(this.value)
+                client.publish('dave/z-accel', this.value)
+            }
+            //for gyroscope
         xGyroSlider.onmouseup = function() {
             console.log(this.value)
             client.publish('dave/x-gyro', this.value)
@@ -322,10 +319,10 @@
             client.publish('dave/y-gyro', this.value)
         }
         zGyroSlider.onmouseup = function() {
-            console.log(this.value)
-            client.publish('dave/z-gyro', this.value)
-        }
-        //for magnetometer
+                console.log(this.value)
+                client.publish('dave/z-gyro', this.value)
+            }
+            //for magnetometer
         xMagSlider.onmouseup = function() {
             console.log(this.value)
             client.publish('dave/x-mag', this.value)
@@ -338,9 +335,49 @@
             console.log(this.value)
             client.publish('dave/z-mag', this.value)
         }
-        
-     
+
+        presSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/pres', this.value)
+        }
+
+        tempSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/temp', this.value)
+        }
+
+        humiSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/humi', this.value)
+        }
+
+        proxSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/prox', this.value)
+        }
+
+        rcSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/r-c', this.value)
+        }
+
+        gcSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/g-c', this.value)
+        }
+
+        bcSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/b-c', this.value)
+        }
+
+        lightSlider.onmouseup = function() {
+            console.log(this.value)
+            client.publish('dave/lgt', this.value)
+        }
     </script>
 </body>
+
+</html>
 
 </html>
