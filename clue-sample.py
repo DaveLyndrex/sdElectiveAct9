@@ -14,12 +14,11 @@ def display_text(slider):
     clue_data[1].text = "Gyro: {} {} {} dps".format(*(slider["dave/x-gyro"],slider["dave/y-gyro"],slider["dave/z-gyro"]))#display the publish data(x,y,z gyroscope) in index 1.
     clue_data[2].text = "Magnetic: {} {} {} uTesla".format(*(slider["dave/x-mag"],slider["dave/y-mag"],slider["dave/z-mag"]))#display the publish data(x,y,z magnetic) in index 2.
     clue_data[3].text = "Pressure: {} hPa".format(slider["dave/pres"])#display the publish data(pressure) in index 3.
-    # clue_data[4].text = "Altitude: {:.0f} m".format(clue.altitude)
-    clue_data[5].text = "Temperature: {} C".format(slider["dave/temp"])#display the publish data(temperature) in index 4.
-    clue_data[6].text = "Humidity: {} %".format(slider["dave/humi"])#display the publish data(humidity) in index 5.
-    clue_data[7].text = "Proximity: {}".format(slider["dave/prox"])#display the publish data(proximity) in index 6.
-    clue_data[8].text = "Color: R: {} G: {} B: {} C: {}".format(*slider["dave/r-c"],slider["dave/g-c"],slider["dave/b-c"],slider["dave/lgt"])#display the publish data(colors) in index 7.
-    clue_data.show()#show all data.
+    clue_data[4].text = "Temperature: {} C".format(slider["dave/temp"])#display the publish data(temperature) in index 4.
+    clue_data[5].text = "Humidity: {} %".format(slider["dave/humi"])#display the publish data(humidity) in index 5.
+    clue_data[6].text = "Proximity: {}".format(slider["dave/prox"])  #display the publish data(proximity) in index 6.
+    clue_data[7].text = "Color: R: {} G: {} B: {} C: {}".format(*(slider["dave/r-c"],slider["dave/g-c"],slider["dave/b-c"],slider["dave/lgt"]))#display the publish data(colors) in index 7.
+    clue_data.show()
 
 #json that initialize all to 0.
 dave = {"dave/x-accel":0,
@@ -61,6 +60,6 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("mqtt.eclipseprojects.io", 1883, 60)#connect to broker.
+client.connect("mqtt.eclipseprojects.io", 1883, 60)
 
-client.loop_forever()#continuous loop.
+client.loop_forever()

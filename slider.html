@@ -165,7 +165,7 @@
 
     <script src="./browserMqtt.js "></script>
     <script>
-        var broker = 'wss://mqtt.eclipseprojects.io:443/mqtt'; //broker
+        var broker = 'wss://mqtt.eclipseprojects.io:443/mqtt';
         var client = mqtt.connect(broker);
 
         var status_header = document.getElementById('status-header')
@@ -296,8 +296,8 @@
         }
 
 
-        //for  X accelerometer
-        xAccSlider.onmouseup = function() {
+          //for  X accelerometer
+          xAccSlider.onmouseup = function() {
             console.log(this.value)
             client.publish('dave/x-accel', this.value)
         }
@@ -375,9 +375,8 @@
             console.log(this.value)
             client.publish('dave/lgt', this.value)
         }
+     
     </script>
 </body>
-
-</html>
 
 </html>
